@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+
+data/
+mira.mp3
+mira2.mp3
+
+.codex

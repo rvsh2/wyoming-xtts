@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>wyoming-xtts</title>
+    <style>
+      :root {
+        --bg: #f5efe4;
+        --card: rgba(255, 252, 245, 0.86);
+        --ink: #1d1a16;
+        --muted: #615446;
+        --line: rgba(29, 26, 22, 0.12);
+        --accent: #bd5d38;
+      }
+      body {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(189, 93, 56, 0.18), transparent 30%),
+          linear-gradient(135deg, #f7f1e6, #e9dfcf);
+        min-height: 100vh;
+      }
+      main {
+        max-width: 840px;
+        margin: 0 auto;
+        padding: 48px 20px 80px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 28px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 24px 60px rgba(46, 33, 19, 0.08);
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+      }
+      p {
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      dl {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 10px 18px;
+        margin: 24px 0 0;
+      }
+      dt {
+        color: var(--muted);
+      }
+      code {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="card">
+        <h1>wyoming-xtts</h1>
+        <p>Debug surface for a Wyoming TTS server backed by Coqui XTTS-v2.</p>
+        <dl>
+          <dt>Model</dt>
+          <dd><code>__MODEL__</code></dd>
+          <dt>Language</dt>
+          <dd><code>__LANG__</code></dd>
+          <dt>Default Voice</dt>
+          <dd><code>__VOICE__</code></dd>
+          <dt>Endpoints</dt>
+          <dd><code>/health</code>, <code>/voices</code>, <code>/synthesize</code></dd>
+        </dl>
+      </section>
+    </main>
+  </body>
+</html>

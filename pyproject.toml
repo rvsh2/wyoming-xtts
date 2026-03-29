@@ -1,0 +1,29 @@
+[project]
+name = "wyoming-xtts"
+version = "0.1.0"
+description = "Wyoming protocol server for Coqui XTTS-v2"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.110.0,<1",
+    "numpy>=1.26,<3",
+    "soundfile>=0.12,<1",
+    "TTS>=0.22.0,<0.23",
+    "transformers==4.43.1",
+    "torch>=2.6,<2.7",
+    "uvicorn[standard]>=0.29.0,<1",
+    "wyoming>=1.8.0,<2",
+]
+
+[project.scripts]
+wyoming-xtts = "xtts_wyoming.__main__:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["xtts_wyoming"]
+
+[tool.setuptools.package-data]
+xtts_wyoming = ["templates/*.html"]

@@ -1,0 +1,28 @@
+services:
+  wyoming-xtts:
+    build: .
+    container_name: wyoming-xtts
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      COQUI_TOS_AGREED: "1"
+    ports:
+      - "0.0.0.0:10201:10201"
+      - "0.0.0.0:8180:8180"
+    networks:
+      - bridge-network
+    volumes:
+      - ./data/models:/data/models
+      - ./data/speakers:/data/speakers
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 2
+              capabilities: [ gpu ]
+
+networks:
+  bridge-network:
+    external: true

@@ -1,0 +1,8 @@
+fastapi>=0.110.0,<1
+numpy>=1.26,<3
+soundfile>=0.12,<1
+TTS>=0.22.0,<0.23
+transformers==4.43.1
+torch>=2.6,<2.7
+uvicorn[standard]>=0.29.0,<1
+wyoming>=1.8.0,<2

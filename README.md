@@ -36,14 +36,43 @@ Persisted data:
 
 The container sets `COQUI_TOS_AGREED=1`. Use it only if you have reviewed and accepted the Coqui license terms.
 
+Configuration is loaded from `.env` because `compose.yml` uses:
+
+```yaml
+env_file:
+  - .env
+```
+
+If you want to change runtime options such as `XTTS_VOICE_SPEED_PRESETS`, edit `.env` and restart the container.
+
 ## Voices
 
-Built-in voices are published automatically.
+There are two ways to get voices in Home Assistant.
+
+Built-in XTTS voices:
+
+- work out of the box
+- do not require any files in `data/speakers`
+- are the easiest option if you just want to start using TTS
+
+Local cloned voices:
+
+- are optional
+- use your own reference WAV file or files
+- are only needed if you want voice cloning
 
 Local voices are discovered from `data/speakers`:
 
-- `data/speakers/mira.wav` -> `mira`
-- `data/speakers/mira/*.wav` -> `mira`
+- `data/speakers/mira.wav` -> publishes voice `mira`
+- `data/speakers/mira/*.wav` -> also publishes voice `mira`
+
+What this means in practice:
+
+- if you put one file at `data/speakers/mira.wav`, XTTS will use that file as the speaker reference
+- if you create a folder `data/speakers/mira/` and put multiple `.wav` files inside it, XTTS will use all of them as references for the same cloned voice
+- after adding or changing local voices, restart the container and reload the Wyoming integration in Home Assistant
+
+If you do not want voice cloning, you can leave `data/speakers` empty and use only built-in XTTS voices.
 
 Voice speed variants are exposed as separate Wyoming voices so Home Assistant can use them without a custom integration.
 
@@ -52,10 +81,23 @@ Default variants:
 - `VoiceName(1.00x)`
 - `VoiceName(1.15x)`
 
-You can change them with `XTTS_VOICE_SPEED_PRESETS`, for example:
+The value comes from `.env`:
 
 ```env
-XTTS_VOICE_SPEED_PRESETS=normal=1.0,fast=1.2
+XTTS_VOICE_SPEED_PRESETS=normal=1.0,fast=1.15
+```
+
+To change it:
+
+1. Edit `.env`
+2. Change `XTTS_VOICE_SPEED_PRESETS`
+3. Restart the container
+4. Reload the Wyoming integration in Home Assistant so it fetches the new voice list
+
+Example:
+
+```env
+XTTS_VOICE_SPEED_PRESETS=normal=1.0,fast=1.20
 ```
 
 ## Home Assistant
